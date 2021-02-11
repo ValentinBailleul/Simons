@@ -220,11 +220,40 @@ class Home extends React.Component {
             <div id="center">
                 <h1>Voici mon jeu Simons, atteignez la séquence 5 pour gagner, bonne chance !</h1>
                 <div> Séquence: {this.state.numberGameColors} </div>
-                <div>{this.state.numberGameColors === 5 ? 'Félicitation ! vous avez gagné !' : 'Cliquez de nouveau sur start pour la prochaine séquence'} </div>
+                <div>{this.state.numberGameColors === 5 ? 'Félicitation ! vous avez gagné ! Veuillez recharger la page si vous souhaité recommencer !' : 'Cliquez de nouveau sur start pour la prochaine séquence'} </div>
                 <div id="startBox">
                     <div id="startButton"></div>
                     <button value="start" onClick={this.onGameStart}>  Start  </button>
                 </div>
+                <div style = {{display: this.state.counterS === 5 ? 'block' : 'none'}}> 
+                <form>
+                    <h4>Enregistrez-vous et découvrez qui a déjà joué !</h4>
+                <label>
+                    Nom :
+                    <input type="text" value={this.state.theName} onChange={this.handleChange} />
+                </label>
+                <input type="submit" value="Envoyer" />
+                </form>
+                <hr/>
+                <div className="row justify-content-center">
+                    <table class="table">
+                        <thead class="thead-light">
+                        <tr>
+                            <th>Pseudo</th>
+                            <th>Score</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {this.state.theUsers.map(theUser =>
+                            <tr>
+                                <td>{theUser.name}</td>
+                                <td>{theUser.score}</td>
+                            </tr>
+                        )}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
             <div class="gameContainer">
                 <button 
                     className={this.state.gameValue === '1'? 'button1Allumer' : 'button1'}
@@ -280,35 +309,6 @@ class Home extends React.Component {
                     name="button9"
                     onClick= {this.userMoves}
                 />
-            </div>
-            <div > 
-                <form>
-                    <h4>Enregistrez-vous et découvrez qui a déjà joué !</h4>
-                <label>
-                    Nom :
-                    <input type="text" value={this.state.theName} onChange={this.handleChange} />
-                </label>
-                <input type="submit" value="Envoyer" />
-                </form>
-                <hr/>
-                <div className="row justify-content-center">
-                    <table class="table">
-                        <thead class="thead-light">
-                        <tr>
-                            <th>Pseudo</th>
-                            <th>Score</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {this.state.theUsers.map(theUser =>
-                            <tr>
-                                <td>{theUser.name}</td>
-                                <td>{theUser.score}</td>
-                            </tr>
-                        )}
-                        </tbody>
-                    </table>
-                </div>
             </div>
           </div>
         )

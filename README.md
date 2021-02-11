@@ -1,7 +1,7 @@
 # Simons
 Bienvenue sur mon projet Simons ! 
 
-Plusieurs informations sont à lire avant de tester le jeu.
+Plusieurs informations sont à lire avant de tester le jeu. Voici tout d'abord l'URL lorsque vous aurez installé le projet : http://simons.com/#/home
 
 ## Fixtures
 Tout d'abord, veuillez jouer les fixtures afin d'avoir les séquences et les users en local.
