@@ -1,0 +1,235 @@
+body {
+    background-color: lightgray;
+}
+
+.gameContainer {
+  position:relative;
+  width:600px;
+  height:600px;
+  margin:0 auto;
+  margin-top: 50px;
+  border: solid 1px black;
+  background-color: grey;
+  display: grid;
+}
+
+.fourButton:active {
+  opacity: .5;
+}
+
+.activated {
+    opacity: .5;
+  }
+
+
+  .button {
+    outline:none;
+    border: none;
+  }
+  
+  .button:focus {
+    outline: none;
+  }
+
+  .button1 {
+	top:0;
+	left:0;
+    background-color:green;
+	width:200px;
+	height:200px;
+    pointer-events: none;
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .button1Allumer {
+	top:0;
+	left:0;
+    background-color:rgb(0, 0, 0);
+	width:200px;
+	height:200px;
+    pointer-events: none;
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .button2 {
+	top:0;
+    left:0;
+    background-color:rgb(0, 0, 128);
+	width:200px;
+	height:200px;
+    pointer-events: none;
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .button2Allumer {
+	top:0;
+    left:0;
+    background-color:rgb(0, 0, 0);
+	width:200px;
+	height:200px;
+    pointer-events: none;
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .button3 {
+	top:0;
+    left:0;
+    background-color:rgb(245, 20, 39);
+	width:200px;
+	height:200px;
+    pointer-events: none;
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .button3Allumer {
+	top:0;
+    left:0;
+    background-color:rgb(0, 0, 0);
+	width:200px;
+	height:200px;
+    pointer-events: none;
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .button4 {
+	top:0;
+    left:0;
+    background-color:rgb(240, 232, 237);
+	  width:200px;
+	  height:200px;
+    pointer-events: none;
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .button4Allumer {
+	top:0;
+    left:0;
+    background-color:rgb(0, 0, 0);
+	width:200px;
+	height:200px;
+    pointer-events: none;
+    grid-column: 1;
+    grid-row: 2;
+  }
+  
+
+  .button5 {
+	top:0;
+	left:0;
+    background-color:rgb(172, 40, 166);
+	width:200px;
+	height:200px;
+    pointer-events: none;
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .button5Allumer {
+	top:0;
+	left:0;
+    background-color:rgb(0, 0, 0);
+	width:200px;
+	height:200px;
+    pointer-events: none;
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .button6 {
+	top:0;
+    left:0;
+    background-color:rgb(167, 56, 80);
+	width:200px;
+	height:200px;
+    pointer-events: none;
+    grid-column: 3;
+    grid-row: 2;
+  }
+
+  .button6Allumer {
+	top:0;
+    left:0;
+    background-color:rgb(0, 0, 0);
+	width:200px;
+	height:200px;
+    pointer-events: none;
+    grid-column: 3;
+    grid-row: 2;
+  }
+
+
+  .button7 {
+	top:0;
+	left:0;
+    background-color:rgb(198, 156, 41);
+	width:200px;
+	height:200px;
+    pointer-events: none;
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .button7Allumer {
+	top:0;
+	left:0;
+    margin-top:400px;
+    background-color:rgb(0, 0, 0);
+	width:200px;
+	height:200px;
+    pointer-events: none;
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .button8 {
+	top:0;
+    left:0;
+    background-color:rgb(46, 188, 191);
+	width:200px;
+	height:200px;
+    pointer-events: none;
+    grid-column: 2;
+    grid-row: 3;
+  }
+
+  .button8Allumer {
+	top:0;
+    left:0;
+    background-color:rgb(0, 0, 0);
+	width:200px;
+	height:200px;
+    pointer-events: none;
+    grid-column: 2;
+    grid-row: 3;
+  }
+
+  .button9 {
+	top:0;
+    left:0;
+    background-color:rgb(184, 127, 146);
+	width:200px;
+	height:200px;
+    pointer-events: none;
+    grid-column: 3;
+    grid-row: 3;
+  }
+
+  .button9Allumer {
+	top:0;
+    left:0;
+    margin-left:400px;
+    margin-top:400px;
+    background-color:rgb(0, 0, 0);
+	width:200px;
+	height:200px;
+    pointer-events: none;
+    grid-column: 3;
+    grid-row: 3;
+  }
