@@ -15,7 +15,7 @@ Comme vous allez le découvrir, il est possible de jouer 5 séquences en cliquan
 
 Certes la fonctionnalité n'est donc pas complètes, mais nous jouons bien les séquences insérer grâce aux fixtures !
 #### Inscrivez-vous
-Egalement pour cette fonctionnalité, j'ai rencontré un problème au niveau du post depuis axios, je n'avais plus de temps pour résoudre ce dernier.
+Il est possible de vous inscrire directement en enregistrant votre pseudo, votre score est récupéré automatiquement !
 
 ## Mes technos utilisées
 Fidèle au cours, j'ai décidé de garder React JS et Symfony pour ce projet.

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 axios.defaults.headers['Accept'] = 'application/json';
-    
+const ms = require('pretty-ms');
 class Home extends React.Component {
 
     constructor() {
@@ -24,9 +24,13 @@ class Home extends React.Component {
             gameValue: "",
             winner: "",
             numberGameColors: 0,
+            time: 0,
+            start: 0,
             numberUserColors: 0
         }
         
+        this.startTimer = this.startTimer.bind(this);
+        this.stopTimer = this.stopTimer.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.initialState = this.initialState.bind(this);
@@ -37,6 +41,23 @@ class Home extends React.Component {
         this.winnerCheck = this.winnerCheck.bind(this);
     }
 
+    startTimer() {
+        this.setState({
+          isOn: true,
+          time: this.state.time,
+          start: Date.now() - this.state.time
+        })
+        this.timer = setInterval(() => this.setState({
+          time: Date.now() - this.state.start
+        }), 1);
+    }
+
+    stopTimer() {
+        this.setState({isOn: false})
+        clearInterval(this.timer)
+    }
+
+    
     initialState() {
         this.setState({
             value: "",
@@ -54,7 +75,6 @@ class Home extends React.Component {
       }
     
       handleSubmit(event) {
-        alert('Le nom a été soumis : ' + this.state.theName);
         event.preventDefault();
         this.postUser();
         console.log(this.state.theName);
@@ -68,7 +88,7 @@ class Home extends React.Component {
     postUser() {
         var data = {
             name: this.state.theName,
-            score: "200"
+            score: this.state.time
         }
         axios.post('/api/user_simons', data)
             .then((response) => {
@@ -90,16 +110,16 @@ class Home extends React.Component {
             })
     }
 
+
+
     //On génère les couleurs à chaque start (comme indiqué sur la page, il faut appuyer sur start pour passer à la séquence suivante)
-    onGameStart() {
+    onGameStart() {        
         this.generateColor();
     }
 
    //On génère les couleurs aléatoirement que l'on récupère par l'api grâce aux séquences (une seul au départ, puis deux, puis trois,...)
    generateColor() {
 
-    console.log(this.state.counterS);
-    console.log(this.state.sequences[1]);
     if(this.state.counterS === 0)
     {
         this.GAME_COLORS.push(this.state.sequences[1].number1 - 1);
@@ -120,7 +140,6 @@ class Home extends React.Component {
     {
         this.GAME_COLORS.push(this.state.sequences[1].number5 - 1);
     }
-    // this.GAME_COLORS.push(this.GAME_COLORS.length);
     this.setState({numberGameColors: this.GAME_COLORS.length })
     
     console.log(this.GAME_COLORS);
@@ -150,8 +169,8 @@ class Home extends React.Component {
     }
 
     userMoves() {
-        this.USER_COLORS.push(1);
         console.log("ca ne fonctionne pas");
+        this.USER_COLORS.push(1);
         let colorHighlighted = '';
 
             switch (this.USER_COLORS[0]) {
@@ -214,25 +233,34 @@ class Home extends React.Component {
         }
     }
 
-    render() {        
+    render() {     
+        let start = (this.state.time == 0) ? <button onClick={this.startTimer}>Déclenchez le chronomètre</button> :  null;
+        let stop = (this.state.time == 0 || !this.state.isOn) ? null : <button onClick={this.stopTimer}>Stopper le chronomètre</button>
         return (
             
             <div id="center">
-                <h1>Voici mon jeu Simons, atteignez la séquence 5 pour gagner, bonne chance !</h1>
+                <h1>Bienvenue sur mon jeu Simons ! </h1>
+                <h3>Le but du jeu est simple, appuyer sur le bouton "Déclenchez le chronomètre", atteignez la séquence numéro 5 en cliquant sur le bouton "Start" puis appuyez rapidement sur le bouton "Stopper le chronomètre", bonne chance !</h3>
                 <div> Séquence: {this.state.numberGameColors} </div>
-                <div>{this.state.numberGameColors === 5 ? 'Félicitation ! vous avez gagné ! Veuillez recharger la page si vous souhaité recommencer !' : 'Cliquez de nouveau sur start pour la prochaine séquence'} </div>
+                <div>{this.state.numberGameColors === 5 ? 'Félicitation ! vous avez gagné ! Votre score est ' + this.state.time + ' ! Veuillez recharger la page si vous souhaité recommencer et améliorer votre score !' : 'Cliquez de nouveau sur start pour la prochaine séquence'} </div>
                 <div id="startBox">
                     <div id="startButton"></div>
                     <button value="start" onClick={this.onGameStart}>  Start  </button>
                 </div>
+                <div>
+                    <h3>Votre temps : {ms(this.state.time)}</h3>
+                    {start}
+                    {stop}
+                </div>
+                
                 <div style = {{display: this.state.counterS === 5 ? 'block' : 'none'}}> 
                 <form>
                     <h4>Enregistrez-vous et découvrez qui a déjà joué !</h4>
-                <label>
-                    Nom :
-                    <input type="text" value={this.state.theName} onChange={this.handleChange} />
-                </label>
-                <input type="submit" value="Envoyer" />
+                    <label>
+                        Nom :
+                        <input type="text" value={this.state.theName} onChange={this.handleChange} />
+                    </label>
+                    <button value="Envoyer" onClick={this.handleSubmit} >Envoyer</button>
                 </form>
                 <hr/>
                 <div className="row justify-content-center">
@@ -279,7 +307,7 @@ class Home extends React.Component {
                     name="button4"
                     onClick= {this.userMoves}
                 />
-                <button 
+                <button
                     className={this.state.gameValue === '5'? 'button5Allumer' : 'button5'}
                     value="5" 
                     name="button5"

@@ -41,7 +41,7 @@ class UserSimons
     private $date;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer", length=255)
      * @Groups({"user:write", "user:read"})
      */
     private $score;
